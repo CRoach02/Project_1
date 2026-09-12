@@ -1,6 +1,6 @@
 # Project_1
 
-Not the first project in a series of many, but rather the 
+Not the first project in a series of many, rather the 
 reduction of many scattered, weekend projects into one!
 
 ### Background
@@ -17,11 +17,11 @@ Why a public repo?
 repo for every small script project I do.
 
 Why C++ as someone who is more involved in data science?
-- I just wanted to learn it, and because I was curouis how libraries
-like Numpy integrate other languages like C with Python.
+- I just wanted to learn it, and because I was curious how libraries
+like Numpy integrate other languages like C/C++ with Python.
 
 ### My Mission
 
 Unfortunately it is nothing grand, I just needed to "clean
 my room," per say. With this in mind hopefully this repo
-will not be a complete offense to those lots of C++ experience.
+will not be a complete offense to those with lots of C++ experience.
