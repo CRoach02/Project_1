@@ -1,6 +1,6 @@
 # Project_1
 
-Not the first project in a series of many, but rather the 
+Not the first project in a series of many, rather the 
 reduction of many scattered, weekend projects into one!
 
 ### Background
@@ -24,4 +24,4 @@ like Numpy integrate other languages like C/C++ with Python.
 
 Unfortunately it is nothing grand, I just needed to "clean
 my room," per say. With this in mind hopefully this repo
-will not be a complete offense to those lots of C++ experience.
+will not be a complete offense to those with lots of C++ experience.
