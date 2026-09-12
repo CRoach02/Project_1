@@ -17,7 +17,7 @@ Why a public repo?
 repo for every small script project I do.
 
 Why C++ as someone who is more involved in data science?
-- I just wanted to learn it, and because I was curouis how libraries
+- I just wanted to learn it, and because I was curious how libraries
 like Numpy integrate other languages like C with Python.
 
 ### My Mission
