@@ -29,7 +29,6 @@ struct Motion_Object
     char motion_char;
     Vec2<int> position;
     Vec2<int> velocity;
-    std::string movement_rule;
 };
 
 class Waterfall
@@ -38,6 +37,8 @@ private:
     char m_background_char;
     std::size_t m_background_width;
     std::size_t m_background_height;
+    
+    std::vector<Motion_Object> m_object_list{};
     std::vector<char> m_background{};
 
 public:
@@ -51,6 +52,15 @@ public:
     void displayBackground();
 
     // simulation
+    void updateMotionObjects(std::vector<Motion_Object>& objects_list);
+    void generateMotionObjectCopies(
+        int obj_count, 
+        const Vec2<int>& offset,
+        char motion_char,
+        const Vec2<int>& position,
+        const Vec2<int>& velocity
+    );
+
 
     ///@brief Singular run call for Waterfall to be used in main.cpp
     void runWaterfall();

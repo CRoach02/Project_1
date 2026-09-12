@@ -7,6 +7,7 @@
 #include <chrono>
 #include <thread>
 #include <iterator>
+#include <stdexcept>
 
 
 /*  Implementation details:
@@ -63,23 +64,74 @@ void Waterfall::displayBackground() {
     }
 }
 
+/**
+ * Updates each Motion_Object's position by its velocity
+ * 
+ * Hopefully mutating each object does not break this
+ */
+void Waterfall::updateMotionObjects(std::vector<Motion_Object>& objects_list) {
+    for (Motion_Object& obj : objects_list) {
+        obj.position.x += (obj.position.x + obj.velocity.x) % m_background_width;
+        obj.position.y = (obj.position.y + obj.velocity.y) % m_background_height;
+    }
+}
+
+// Monster function incoming; definitely broke a few best practices here
+void Waterfall::generateMotionObjectCopies(
+    int obj_count, 
+    const Vec2<int>& offset,
+    char motion_char,
+    const Vec2<int>& position,
+    const Vec2<int>& velocity
+) {
+    // TODO : add negative bounds checking
+    if (position.x + (obj_count * offset.x) >= (int)m_background_width) {
+        throw std::invalid_argument("Position offset cannot exceed background width.");
+    }
+    if (position.y + (obj_count * offset.y) >= (int)m_background_height) {
+        throw std::invalid_argument("Position offset cannot exceed background height.");
+    }
+    for (int i = 0; i < obj_count; ++i) {
+        m_object_list.push_back({
+            motion_char,                                                        // motion_char
+            {position.x + (i * offset.x), position.y + (i * offset.y)},         // position
+            {velocity.x, velocity.y}                                            // velocity
+        });
+    }
+}
+
 /** 
  * runProject follows a predefined structure to make showcasing easy and
  * because it will likely only be ran once and forgotten about.
  */
 void Waterfall::runWaterfall() {
+    int loop_count = 20;
     Motion_Object wave = {
         .motion_char = '~',
         .position = {0, 0},
-        .velocity = {0, 1},       
-        .movement_rule = "vertical shift down"
+        .velocity = {0, 1}
     };
-    std::vector<Motion_Object> obj_list{wave};
-    Waterfall::setBackgroundChar('#');
+    m_object_list.push_back(wave);
+    Waterfall::setBackgroundChar(' ');
     Waterfall::setBackgroundHeight(16);
     Waterfall::setBackgroundWidth(9);
     
-    Waterfall::createBackground();
-    Waterfall::drawMotionObjects(obj_list);
-    Waterfall::displayBackground();
+    // Primary loop
+    for (int i = 0; i < loop_count; ++i) {
+        // Reset background
+        Waterfall::createBackground();
+
+        Waterfall::drawMotionObjects(m_object_list);
+        
+        Waterfall::displayBackground();
+        
+        Waterfall::updateMotionObjects(m_object_list);
+        
+        std::this_thread::sleep_for(std::chrono::milliseconds(250));
+
+        // Reset cursor (avoids continuously printing new lines)
+        if (i < 19) {
+            std::cout << "\033[" << m_background_height << "A";
+        }
+    }
 }
