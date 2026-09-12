@@ -18,7 +18,7 @@ repo for every small script project I do.
 
 Why C++ as someone who is more involved in data science?
 - I just wanted to learn it, and because I was curious how libraries
-like Numpy integrate other languages like C with Python.
+like Numpy integrate other languages like C/C++ with Python.
 
 ### My Mission
 
