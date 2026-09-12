@@ -69,3 +69,6 @@ Testing/
 
 # docs folder (personal notes and script info -- make visible once cleaned)
 docs/
+
+# VSCode
+.vscode/
